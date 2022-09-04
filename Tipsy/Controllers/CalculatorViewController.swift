@@ -14,37 +14,32 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var zeroPctButton: UIButton!
     @IBOutlet weak var tenPctButton: UIButton!
     @IBOutlet weak var twentyPctButton: UIButton!
-    var tipPercentage = ""
+    var tip = 0.1
+    var numberOfSPlit = 2
 
     @IBAction func tipChanged(_ sender: UIButton) {
-        self.tipPercentage = sender.currentTitle ?? "Error"
-        if self.tipPercentage == zeroPctButton.currentTitle {
-        zeroPctButton.isSelected = true
-            tenPctButton.isSelected = false
-            twentyPctButton.isSelected = false
-        } else if self.tipPercentage == tenPctButton.currentTitle {
-            zeroPctButton.isSelected = false
-                tenPctButton.isSelected = true
-                twentyPctButton.isSelected = false
-        } else {
-            zeroPctButton.isSelected = false
-                tenPctButton.isSelected = false
-                twentyPctButton.isSelected = true
-        }
+        zeroPctButton.isSelected = false
+        tenPctButton.isSelected = false
+        twentyPctButton.isSelected = false
         
+        sender.isSelected = true
+        
+        let buttonTitle = sender.currentTitle ?? "Error"
+        
+        let buttonTitleMinusPercentSign =  String(buttonTitle.dropLast())
+        
+        let buttonTitleAsANumber = Double(buttonTitleMinusPercentSign)!
+        
+        tip = buttonTitleAsANumber / 100
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        numberOfSPlit = Int(sender.value)
+        splitNumberLabel.text = String(format: "%.0f", sender.value)
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-        if self.tipPercentage == zeroPctButton.currentTitle {
-            print(0.0)
-        } else if self.tipPercentage == tenPctButton.currentTitle {
-            print(0.1)
-        } else {
-            print(0.2)
-        }
+        print(numberOfSPlit)
     }
     
 }
