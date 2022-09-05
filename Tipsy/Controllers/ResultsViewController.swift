@@ -3,7 +3,6 @@
 //  Tipsy
 //
 //  Created by Злата Гусева on 04.09.2022.
-//  Copyright © 2022 The App Brewery. All rights reserved.
 //
 
 import UIKit
@@ -12,23 +11,18 @@ class ResultsViewController: UIViewController {
 
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    
+    var result = "0.0"
+    var tips = 10
+    var split = 2
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        settingsLabel.text = "Split between \(split) people, with \(tips)% tip"
+        totalLabel.text = result
     }
     
     @IBAction func reculculatePressed(_ sender: UIButton) {
+        dismiss(animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
