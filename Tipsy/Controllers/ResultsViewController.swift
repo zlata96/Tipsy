@@ -12,14 +12,15 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     
-    var result = "0.0"
-    var tips = 10
-    var split = 2
+    var billBrain: BillBrain?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settingsLabel.text = "Split between \(split) people, with \(tips)% tip"
-        totalLabel.text = result
+        
+        if let billBrain = billBrain {
+            settingsLabel.text = "Split between \(billBrain.numberOfSPlit) people, with \(Int(billBrain.tip))% tip"
+            totalLabel.text = billBrain.calculateResult()
+        }
     }
     
     @IBAction func reculculatePressed(_ sender: UIButton) {
